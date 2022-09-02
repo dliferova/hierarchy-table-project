@@ -14,7 +14,7 @@ type RecordChildren = {
   }
 }
 
-const data: Record[] = [
+const recordsDate: Record[] = [
   {
     "data": {
       "ID": "44",
@@ -604,4 +604,4 @@ const data: Record[] = [
   }
 ]
 
-export default data;
+export default recordsDate;

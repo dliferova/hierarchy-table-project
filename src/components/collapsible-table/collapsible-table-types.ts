@@ -1,5 +1,6 @@
 import {Record} from "../../data";
 
 export type CollapsibleTableProps = {
-  data: Record[]
+  records: Record[],
+  onRowDelete: (id: string) => void;
 }

@@ -20,11 +20,20 @@ function Row(props: RowProps): JSX.Element {
     return previousValue.concat(recordsChildren[currentValue].records)
   }, [])
 
+  const [rowChildren, setRowChildren] = useState(children);
+
+  const handleDeleteClick = (id: string) => {
+    const newRows = [...rowChildren];
+    const index = rowChildren.findIndex((rowItem) => rowItem.data.ID === id);
+    newRows.splice(index, 1);
+    setRowChildren(newRows);
+  }
+
   return (
     <React.Fragment>
       <TableRow sx={{'& > *': {borderBottom: 'unset'}}}>
         <TableCell>
-          {children.length > 0 &&
+          {rowChildren.length > 0 &&
           <IconButton
             aria-label="expand row"
             size="small"
@@ -40,6 +49,7 @@ function Row(props: RowProps): JSX.Element {
         <TableCell align="center">
           <Button
             color="error"
+            onClick={() => props.onRowDelete(props.row.data.ID)}
           >
             <ClearIcon
               sx={{
@@ -51,10 +61,10 @@ function Row(props: RowProps): JSX.Element {
 
       <TableRow>
         <TableCell style={{paddingBottom: 0, paddingTop: 0}} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
+          <Collapse in={rowChildren.length > 0 && open} timeout="auto" unmountOnExit>
             <Box sx={{margin: 1}}>
-              {children.length > 0 ?
-                <CollapsibleTable data={children}/> : null
+              {rowChildren.length > 0 ?
+                <CollapsibleTable records={rowChildren} onRowDelete={handleDeleteClick}/> : null
               }
             </Box>
           </Collapse>

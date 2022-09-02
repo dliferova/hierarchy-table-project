@@ -1,11 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import CollapsibleTable from "../collapsible-table/collapsible-table";
-import data from "../../data";
+import recordsDate from "../../data";
+import EmptyTable from "../empty-table/empty-table";
 
 function App(): JSX.Element {
+  const [records, setRecords] = useState(recordsDate);
+
+  const handleDeleteClick = (id: string) => {
+    const newRows = [...records];
+    const index = records.findIndex((rowItem) => rowItem.data.ID === id);
+    newRows.splice(index, 1);
+    setRecords(newRows);
+  }
+
   return (
     <div className="App">
-      <CollapsibleTable data={data} />
+      {records.length > 0 ?
+        <CollapsibleTable records={records} onRowDelete={handleDeleteClick} />
+        : <EmptyTable/>
+      }
     </div>
   );
 }

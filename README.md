@@ -6,41 +6,47 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `npm start`
-
+```bash
+npm start
+```
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+```bash
+npm run build
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Builds the app for production to the `build` folder.
 
-### `npm run build`
+## About project
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Application creates a hierarchy table from input data in JSON format. 
+Every item in JSON consists of its own data and array, which items represent child data. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Technologies:
+- React.js
+- TypeScript
+- State management - Redux
+- Material UI
+- Focus on code quality, correct usage of chosen technologies, data consistency
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Results and comments:
+- Project was styled with a help of [Material-UI](https://mui.com/) framework.
+- Item's data can have a variable number of attributes (key: value), and item can have a variable number of nested child items ✅
+- When user click on an item, direct child items are hidden/shown ✅
+- A "remove" button, which deletes an item in the data and view layer in your application ✅
 
-### `npm run eject`
+### Issues
+⚠️ Deleting of child items does not work (need to implement deleting in tree data structure)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Future tasks and improvements
+- Solve all Issues
+- Improve styles of collapsible table component, because they look pretty basic (for example [add Styled Components](https://mui.com/system/styled/))
+- Better display of data in cells (date formatting, etc.)
+- Loading JSON from server
+- Improve a11y (accessible names, etc.)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Lighthouse report
+Full report is available in `koala_hierarchy_table_lighthouse_report.pdf`
+![lighthouse](lighthouse_summary.jpg?raw=true "lighthouse")

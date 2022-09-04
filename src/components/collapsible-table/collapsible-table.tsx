@@ -33,7 +33,7 @@ function CollapsibleTable(props: CollapsibleTableProps):JSX.Element {
           </TableHead>
         <TableBody>
           {props.records.map((item, index) =>
-            <Row row={item} key={index} onRowDelete={props.onRowDelete}/>
+            <Row row={item} key={index}/>
           )}
         </TableBody>
       </Table>

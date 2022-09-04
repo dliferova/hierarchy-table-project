@@ -1,22 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {useSelector} from "react-redux";
 import CollapsibleTable from "../collapsible-table/collapsible-table";
-import recordsDate from "../../data";
 import EmptyTable from "../empty-table/empty-table";
+import {getRecords} from "../../store/records/selectors";
 
 function App(): JSX.Element {
-  const [records, setRecords] = useState(recordsDate);
-
-  const handleDeleteClick = (id: string) => {
-    const newRows = [...records];
-    const index = records.findIndex((rowItem) => rowItem.data.ID === id);
-    newRows.splice(index, 1);
-    setRecords(newRows);
-  }
+  const records = useSelector(getRecords);
 
   return (
     <div className="App">
       {records.length > 0 ?
-        <CollapsibleTable records={records} onRowDelete={handleDeleteClick} />
+        <CollapsibleTable records={records} />
         : <EmptyTable/>
       }
     </div>

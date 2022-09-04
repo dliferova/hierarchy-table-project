@@ -20,8 +20,10 @@ export const recordsReducer = createReducer(initialState, (builder) => {
     .addCase(recordDeleted, (state, action) => {
       const newRecords = [...state.records]
       const index = newRecords.findIndex(record => record.data.ID === action.payload.recordId)
-      newRecords.splice(index, 1)
-      state.records = newRecords
+      if (index !== -1) {
+        newRecords.splice(index, 1)
+        state.records = newRecords
+      }
     })
     .addCase(recordOpened, (state, action) => {
       const openedRecords = [...state.openedRecords]

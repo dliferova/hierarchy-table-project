@@ -47,6 +47,7 @@ function Row(props: RowProps): JSX.Element {
         <TableCell align="center">
           <Button
             color="error"
+            type="button"
             onClick={() => dispatch(recordDeleted(props.row.data.ID))}
           >
             <ClearIcon
